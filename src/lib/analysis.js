@@ -41,8 +41,11 @@ export async function analyzeLand(imageUrl, { fileName }) {
   `
 
   try {
+    // src/lib/analysis.js
+
+    // ...
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -61,13 +64,13 @@ export async function analyzeLand(imageUrl, { fileName }) {
             }
           ],
           generationConfig: {
-            temperature: 0.2, // Low temperature means more factual/consistent responses
+            temperature: 0.2,
             responseMimeType: "application/json"
           }
         })
       }
     )
-
+    // ...
     if (!response.ok) {
       const errorData = await response.json()
       console.error("Gemini API Error:", errorData)

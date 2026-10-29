@@ -39,6 +39,15 @@ function scoreColor(s) {
 }
 
 export default function AnalysisReport({ report, imageUrl }) {
+
+  if (!report || !report.fertility) {
+    return (
+      <div className="card p-8 text-center bg-white border border-slate-200 rounded-xl">
+        <p className="text-slate-500">No report data available. Please try a new analysis.</p>
+      </div>
+    );
+  }
+
   const { profile } = useAuth()
   const isFree = profile?.plan === 'free'
   const { metrics, recommended, waterNeed, amendments, plan } = report
