@@ -40,10 +40,19 @@ function scoreColor(s) {
 
 export default function AnalysisReport({ report, imageUrl }) {
 
-  if (!report || !report.fertility) {
+  if (!report) {
     return (
       <div className="card p-8 text-center bg-white border border-slate-200 rounded-xl">
         <p className="text-slate-500">No report data available. Please try a new analysis.</p>
+      </div>
+    );
+  }
+
+  // You can optionally keep this second check if you want to ensure a valid report:
+  if (!report.fertility) {
+    return (
+      <div className="card p-8 text-center bg-white border border-slate-200 rounded-xl">
+        <p className="text-slate-500">The report is incomplete. Please try a new analysis.</p>
       </div>
     );
   }
